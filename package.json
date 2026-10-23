@@ -1,0 +1,62 @@
+{
+  "name": "rhf-config-engine",
+  "version": "0.1.0",
+  "description": "Declarative visibility, validation, and field dependencies for React Hook Form. Define form behavior as JSON config.",
+  "keywords": [
+    "react-hook-form",
+    "dynamic-forms",
+    "conditional-validation",
+    "form-config",
+    "declarative-forms",
+    "json-schema-form",
+    "field-visibility",
+    "form-engine",
+    "config-driven"
+  ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "lint": "eslint src --ext .ts,.tsx",
+    "typecheck": "tsc --noEmit",
+    "playground": "cd playground && vite"
+  },
+  "peerDependencies": {
+    "react": ">=17.0.0",
+    "react-dom": ">=17.0.0",
+    "react-hook-form": ">=7.0.0"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.4.0",
+    "@testing-library/react": "^16.0.0",
+    "@testing-library/user-event": "^14.5.0",
+    "@types/node": "^25.6.0",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.0",
+    "@vitest/coverage-v8": "^2.0.0",
+    "jsdom": "^24.0.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "react-hook-form": "^7.52.0",
+    "tsup": "^8.1.0",
+    "typescript": "^5.4.0",
+    "vite": "^5.3.0",
+    "vitest": "^2.0.0"
+  }
+}

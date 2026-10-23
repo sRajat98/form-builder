@@ -1,0 +1,119 @@
+{
+  "id": "employee-onboarding",
+  "name": "Employee Onboarding",
+  "version": "1.0.0",
+  "fields": {
+    "employmentType": {
+      "type": "radio",
+      "label": "Employment Type",
+      "options": [
+        { "label": "Full-time", "value": "full-time" },
+        { "label": "Part-time", "value": "part-time" },
+        { "label": "Contractor", "value": "contractor" }
+      ],
+      "validations": {
+        "required": { "key": "required", "value": true, "message": "Please select employment type" }
+      }
+    },
+    "firstName": {
+      "type": "text",
+      "label": "First Name",
+      "validations": {
+        "required": { "key": "required", "value": true, "message": "First name is required" },
+        "minLength": { "key": "minLength", "value": 2, "message": "Name too short" }
+      }
+    },
+    "lastName": {
+      "type": "text",
+      "label": "Last Name",
+      "validations": {
+        "required": { "key": "required", "value": true, "message": "Last name is required" }
+      }
+    },
+    "email": {
+      "type": "text",
+      "label": "Work Email"
+    },
+    "department": {
+      "type": "select",
+      "label": "Department",
+      "options": [
+        { "label": "Engineering", "value": "engineering" },
+        { "label": "Finance", "value": "finance" },
+        { "label": "HR", "value": "hr" },
+        { "label": "Marketing", "value": "marketing" }
+      ]
+    },
+    "startDate": {
+      "type": "date",
+      "label": "Start Date",
+      "validations": {
+        "required": { "key": "required", "value": true, "message": "Start date is required" }
+      }
+    },
+    "contractEndDate": {
+      "type": "date",
+      "label": "Contract End Date",
+      "constraints": {
+        "visibility": { "field": "employmentType", "operator": "EQ", "value": "contractor" }
+      },
+      "helperText": "Leave blank for open-ended contracts"
+    },
+    "salary": {
+      "type": "number",
+      "label": "Annual Salary (USD)",
+      "constraints": {
+        "visibility": {
+          "$or": [
+            { "field": "employmentType", "operator": "EQ", "value": "full-time" },
+            { "field": "employmentType", "operator": "EQ", "value": "part-time" }
+          ]
+        }
+      },
+      "validations": {
+        "min": { "key": "min", "value": 0, "message": "Salary cannot be negative" }
+      }
+    },
+    "hourlyRate": {
+      "type": "number",
+      "label": "Hourly Rate (USD)",
+      "constraints": {
+        "visibility": { "field": "employmentType", "operator": "EQ", "value": "contractor" }
+      }
+    },
+    "skills": {
+      "type": "multi-select",
+      "label": "Skills",
+      "options": [
+        { "label": "TypeScript", "value": "ts" },
+        { "label": "React", "value": "react" },
+        { "label": "Node.js", "value": "node" },
+        { "label": "Python", "value": "python" },
+        { "label": "SQL", "value": "sql" }
+      ]
+    },
+    "remoteWork": {
+      "type": "checkbox",
+      "label": "Remote work eligible"
+    },
+    "notes": {
+      "type": "textarea",
+      "label": "Additional Notes",
+      "placeholder": "Any other information..."
+    }
+  },
+  "fieldsOrder": [
+    "employmentType",
+    "firstName",
+    "lastName",
+    "email",
+    "department",
+    "startDate",
+    "contractEndDate",
+    "salary",
+    "hourlyRate",
+    "skills",
+    "remoteWork",
+    "notes"
+  ]
+}

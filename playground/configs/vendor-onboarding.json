@@ -1,0 +1,126 @@
+{
+  "id": "vendor-onboarding",
+  "name": "Vendor Onboarding",
+  "version": "1.0.0",
+  "fields": {
+    "vendorType": {
+      "type": "select",
+      "label": "Vendor Type",
+      "options": [
+        { "label": "Individual", "value": "individual" },
+        { "label": "Business", "value": "business" }
+      ],
+      "validations": {
+        "required": { "key": "required", "value": true, "message": "Please select a vendor type" }
+      }
+    },
+    "firstName": {
+      "type": "text",
+      "label": "First Name",
+      "constraints": {
+        "visibility": { "field": "vendorType", "operator": "EQ", "value": "individual" }
+      },
+      "validations": {
+        "required": { "key": "required", "value": true, "message": "First name is required" }
+      }
+    },
+    "lastName": {
+      "type": "text",
+      "label": "Last Name",
+      "constraints": {
+        "visibility": { "field": "vendorType", "operator": "EQ", "value": "individual" }
+      }
+    },
+    "companyName": {
+      "type": "text",
+      "label": "Company Name",
+      "constraints": {
+        "visibility": { "field": "vendorType", "operator": "EQ", "value": "business" }
+      },
+      "validations": {
+        "required": {
+          "key": "required",
+          "value": true,
+          "message": "Company name is required",
+          "constraints": { "field": "vendorType", "operator": "EQ", "value": "business" }
+        }
+      }
+    },
+    "taxId": {
+      "type": "text",
+      "label": "Tax ID",
+      "constraints": {
+        "visibility": { "field": "vendorType", "operator": "EQ", "value": "business" }
+      },
+      "helperText": "Enter your EIN or VAT number"
+    },
+    "email": {
+      "type": "text",
+      "label": "Email Address",
+      "validations": {
+        "required": { "key": "required", "value": true, "message": "Email is required" },
+        "pattern": { "key": "pattern", "value": "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$", "message": "Enter a valid email" }
+      }
+    },
+    "phone": {
+      "type": "text",
+      "label": "Phone Number"
+    },
+    "bankCountry": {
+      "type": "select",
+      "label": "Bank Country",
+      "options": [
+        { "label": "United States", "value": "US" },
+        { "label": "United Kingdom", "value": "GB" },
+        { "label": "European Union", "value": "EU" }
+      ]
+    },
+    "iban": {
+      "type": "text",
+      "label": "IBAN",
+      "constraints": {
+        "visibility": {
+          "$or": [
+            { "field": "bankCountry", "operator": "EQ", "value": "GB" },
+            { "field": "bankCountry", "operator": "EQ", "value": "EU" }
+          ]
+        }
+      }
+    },
+    "accountNumber": {
+      "type": "text",
+      "label": "Account Number",
+      "constraints": {
+        "visibility": { "field": "bankCountry", "operator": "EQ", "value": "US" }
+      }
+    },
+    "routingNumber": {
+      "type": "text",
+      "label": "Routing Number",
+      "constraints": {
+        "visibility": { "field": "bankCountry", "operator": "EQ", "value": "US" }
+      }
+    },
+    "termsAccepted": {
+      "type": "checkbox",
+      "label": "I agree to the terms and conditions",
+      "validations": {
+        "required": { "key": "required", "value": true, "message": "You must accept the terms" }
+      }
+    }
+  },
+  "fieldsOrder": [
+    "vendorType",
+    "firstName",
+    "lastName",
+    "companyName",
+    "taxId",
+    "email",
+    "phone",
+    "bankCountry",
+    "iban",
+    "accountNumber",
+    "routingNumber",
+    "termsAccepted"
+  ]
+}
